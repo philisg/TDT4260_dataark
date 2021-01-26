@@ -16,7 +16,7 @@
 #include <string.h>
 
 /* Size of the matrices to multiply */
-#define SIZE 1000
+#define SIZE 800
 
 /* HINT: The Makefile allows you to specify L1 and L2 block sizes as
  * compile time options.These may be specified when calling make,
@@ -43,6 +43,15 @@ matmul_opt()
          * here. It should calculate mat_c := mat_a * mat_b. See
          * matmul_ref() for a reference solution.
          */
+		int i, j, k;
+
+        for (i = 0; i < SIZE; i++) {
+                for (j = 0; j < SIZE; j++) {
+                        for (k = 0; k < SIZE; k++) {
+                                mat_c[i][j] += mat_a[i][k] * mat_b[k][j];
+                        }
+                }
+        }
 }
 
 /**
