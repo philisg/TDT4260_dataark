@@ -119,11 +119,11 @@ avdc_dbg_log(avdark_cache_t *self, const char *msg, ...)
 int LRU(avdark_cache_t *self, int index)
 {
 	// this function finds the least recent used index
-	long int ref_timestamp = 2147483648;
+	long int ref_timestamp = 2147483648; // 1 << 31
 	int new_index = self->lines[index].timestamp;
 	int lines = self->assoc * self->number_of_sets;
 	
-	for(int i = index; i < lines; i += self->number_of_sets)
+	for(int i = index; i < lines; i += self->number_of_sets) // finds the line with the lowest timestamp
 	{
 		if (self->lines[i].timestamp < ref_timestamp)
 		{
